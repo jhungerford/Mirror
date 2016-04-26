@@ -1,0 +1,44 @@
+/*
+  Page is displayed behind a two-way mirror which blocks some light (and only acts as a mirror when the background is dark.
+  Use the following color scheme:
+
+  background: #000000
+  text: #FAFAFA
+  highlights: #BDBDBD
+*/
+
+body {
+    background: #000000;
+    color: #FAFAFA;
+    font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+}
+
+a {
+    color:#616161;
+}
+
+h1 {
+    font-size: 8rem;
+}
+
+h3 {
+    color: #BDBDBD;
+    font-size: 2rem;
+}
+
+.grid {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.grid:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.column {
+    float: left;
+    width: 33.33%
+}
