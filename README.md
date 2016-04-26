@@ -17,3 +17,6 @@ A couple other people have put together 'magic mirrors'.  Examples:
 * [ ] Weather - forecast for the next week, high/low today
 * [ ] Radar map
 * [ ] Bus schedule
+
+## Developing
+To run in IntelliJ, run the MirrorMain class with program arguments ```server```
