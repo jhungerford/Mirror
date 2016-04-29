@@ -28,4 +28,27 @@ public class MirrorApplicationIntTest {
         assertThat(response.getStatus()).isEqualTo(200);
         assertThat(response.getHeaderString("Content-Type")).isEqualTo("text/html");
     }
+
+    @Test
+    public void cssAssetsExist() {
+        Client client = new JerseyClientBuilder().build();
+
+        Response response = client.target(String.format("http://localhost:%d/css/mirror.css", rule.getLocalPort()))
+                .request().get();
+
+        assertThat(response.getStatus()).isEqualTo(200);
+        assertThat(response.getHeaderString("Content-Type")).contains("text/css");
+        assertThat(response.getLength()).isGreaterThan(0);
+    }
+
+    @Test
+    public void fontAssetsExist() {
+        Client client = new JerseyClientBuilder().build();
+
+        Response response = client.target(String.format("http://localhost:%d/font/weathericons-regular-webfont.ttf", rule.getLocalPort()))
+                .request().get();
+
+        assertThat(response.getStatus()).isEqualTo(200);
+        assertThat(response.hasEntity()).isTrue();
+    }
 }
