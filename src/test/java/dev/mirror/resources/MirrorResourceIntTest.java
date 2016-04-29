@@ -15,7 +15,7 @@ import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MirrorResourceTest {
+public class MirrorResourceIntTest {
 
     @ClassRule
     public static final ResourceTestRule resources = ResourceTestRule.builder()
