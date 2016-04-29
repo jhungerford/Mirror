@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Mirror</title>
+
+    <link href="/css/weather-icons.css" rel="stylesheet" />
+    <link href="/css/mirror.css" rel="stylesheet" />
 </head>
 <body>
 <div class="grid">
