@@ -1,6 +1,7 @@
 package dev.mirror.resources;
 
 import dev.mirror.views.MirrorView;
+import org.joda.time.DateTime;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -16,6 +17,8 @@ public class MirrorResource {
     @GET
     @Path("index.html")
     public MirrorView index() {
-        return new MirrorView();
+        return MirrorView.builder()
+                .setTime(DateTime.now())
+                .build();
     }
 }
