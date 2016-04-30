@@ -22,16 +22,16 @@ public class MirrorResourceTest {
         long time = 1462022645319L;
         DateTimeUtils.setCurrentMillisFixed(time);
 
-        MirrorView view = mirrorResource.index();
+        MirrorView view = mirrorResource.buildMirrorView();
 
         assertThat(view.getTime()).isEqualTo(new DateTime(time));
     }
 
     @Test
     public void timeChangesInView() {
-        MirrorView firstView = mirrorResource.index();
+        MirrorView firstView = mirrorResource.buildMirrorView();
         DateTimeUtils.setCurrentMillisOffset(20000);
-        MirrorView secondView = mirrorResource.index();
+        MirrorView secondView = mirrorResource.buildMirrorView();
 
         assertThat(firstView.getTime()).isNotEqualTo(secondView.getTime());
         assertThat(firstView.getTime().isBefore(secondView.getTime()));

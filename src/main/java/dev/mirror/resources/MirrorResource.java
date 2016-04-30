@@ -11,12 +11,16 @@ public class MirrorResource {
 
     @GET
     public MirrorView root() {
-        return index();
+        return buildMirrorView();
     }
 
     @GET
     @Path("index.html")
     public MirrorView index() {
+        return buildMirrorView();
+    }
+
+    public MirrorView buildMirrorView() {
         return MirrorView.builder()
                 .setTime(DateTime.now())
                 .build();
