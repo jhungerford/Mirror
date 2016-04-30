@@ -1,9 +1,13 @@
 package dev.mirror;
 
+import com.jayway.jsonpath.DocumentContext;
+import com.jayway.jsonpath.JsonPath;
 import dev.mirror.config.MirrorConfiguration;
 import io.dropwizard.testing.ResourceHelpers;
 import io.dropwizard.testing.junit.DropwizardAppRule;
 import org.glassfish.jersey.client.JerseyClientBuilder;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
 
@@ -18,21 +22,41 @@ public class MirrorApplicationIntTest {
     public static final DropwizardAppRule<MirrorConfiguration> rule =
             new DropwizardAppRule<>(MirrorApplication.class, ResourceHelpers.resourceFilePath("test-config.yml"));
 
+    private Client client;
+
+    @Before
+    public void setUp() {
+        this.client = new JerseyClientBuilder().build();
+    }
+
+    @After
+    public void tearDown() {
+        this.client.close();
+    }
+
+    @Test
+    public void appIsHealthy() {
+        Response response = client.target(String.format("http://localhost:%d/healthcheck", rule.getAdminPort()))
+                .request().get();
+
+        DocumentContext healthJson = JsonPath.parse(response.readEntity(String.class));
+        assertThat(healthJson.read("$.app.healthy", Boolean.class)).isTrue();
+        assertThat(healthJson.read("$.deadlocks.healthy", Boolean.class)).isTrue();
+    }
+
     @Test
     public void indexHtmlContainsData() {
-        Client client = new JerseyClientBuilder().build();
-
         Response response = client.target(String.format("http://localhost:%d/index.html", rule.getLocalPort()))
                 .request().get();
 
         assertThat(response.getStatus()).isEqualTo(200);
         assertThat(response.getHeaderString("Content-Type")).isEqualTo("text/html");
+
+        response.close();
     }
 
     @Test
     public void cssAssetsExist() {
-        Client client = new JerseyClientBuilder().build();
-
         Response response = client.target(String.format("http://localhost:%d/css/mirror.css", rule.getLocalPort()))
                 .request().get();
 
@@ -43,8 +67,6 @@ public class MirrorApplicationIntTest {
 
     @Test
     public void fontAssetsExist() {
-        Client client = new JerseyClientBuilder().build();
-
         Response response = client.target(String.format("http://localhost:%d/font/weathericons-regular-webfont.ttf", rule.getLocalPort()))
                 .request().get();
 

@@ -1,6 +1,7 @@
 package dev.mirror;
 
 import dev.mirror.config.MirrorConfiguration;
+import dev.mirror.health.MirrorHealthCheck;
 import dev.mirror.resources.MirrorResource;
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
@@ -18,6 +19,9 @@ public class MirrorApplication extends Application<MirrorConfiguration> {
     }
 
     public void run(MirrorConfiguration config, Environment env) throws Exception {
-        env.jersey().register(new MirrorResource());
+        MirrorResource mirrorResource = new MirrorResource();
+
+        env.healthChecks().register("app", new MirrorHealthCheck(mirrorResource));
+        env.jersey().register(mirrorResource);
     }
 }
