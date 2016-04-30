@@ -27,6 +27,7 @@
     </build>
 
     <dependencies>
+        <!-- Runtime Dependencies -->
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-core</artifactId>
@@ -43,11 +44,17 @@
             <version>${dropwizard.version}</version>
         </dependency>
 
-
+        <!-- Test Dependencies -->
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-testing</artifactId>
             <version>${dropwizard.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.9.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

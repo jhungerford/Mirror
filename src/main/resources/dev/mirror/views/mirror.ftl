@@ -17,8 +17,8 @@
     </div>
     <div class="column">
         <section class="clock">
-            <h1>7:34</h1>
-            <h3>Tuesday, April 26, 2016</h3>
+            <h1 class="clock-time">${time.toString("H:mm")}</h1>
+            <h3 class="clock-date">${time.toString("EEEE, MMMM d, yyyy")}</h3>
         </section>
     </div>
     <div class="column">
