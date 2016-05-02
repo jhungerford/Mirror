@@ -1,6 +1,8 @@
 package dev.mirror.resources;
 
 import com.codahale.metrics.MetricRegistry;
+import dev.mirror.services.WeatherFetcher;
+import dev.mirror.services.WeatherService;
 import io.dropwizard.testing.junit.ResourceTestRule;
 import io.dropwizard.views.ViewMessageBodyWriter;
 import io.dropwizard.views.ViewRenderer;
@@ -12,6 +14,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.junit.ClassRule;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import javax.ws.rs.core.Response;
 
@@ -21,10 +24,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class MirrorResourceIntTest {
 
+    private static WeatherService mockWeatherService = Mockito.mock(WeatherService.class);
+
     @ClassRule
     public static final ResourceTestRule resources = ResourceTestRule.builder()
             .addProvider(new ViewMessageBodyWriter(new MetricRegistry(), Collections.<ViewRenderer>singleton(new FreemarkerViewRenderer())))
-            .addResource(new MirrorResource())
+            .addResource(new MirrorResource(mockWeatherService))
             .build();
 
     @Test

@@ -1,16 +1,20 @@
 package dev.mirror.resources;
 
+import dev.mirror.services.WeatherService;
 import dev.mirror.views.MirrorView;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeUtils;
 import org.junit.After;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class MirrorResourceTest {
 
-    private MirrorResource mirrorResource = new MirrorResource();
+    private WeatherService mockWeatherService = Mockito.mock(WeatherService.class);
+
+    private MirrorResource mirrorResource = new MirrorResource(mockWeatherService);
 
     @After
     public void cleanUp() {

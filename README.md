@@ -18,5 +18,15 @@ A couple other people have put together 'magic mirrors'.  Examples:
 * [ ] Radar map
 * [ ] Bus schedule
 
+## Environment Variables
+Mirror uses several environment variables for configuration.
+| Name | Description |
+|------|-------------|
+| MIRROR_FORECASTIO_API_KEY | Api key from https://developer.forecast.io/ - used for weather |
+| MIRROR_LATITUDE | Your latitude - used for weather |
+| MIRROR_LONGITUDE | Your longitude - used for weather |
+
 ## Developing
-To run in IntelliJ, run the MirrorMain class with program arguments ```server```
+This project uses the dark sky forecast api for weather.  Go to https://developer.forecast.io/, and create an account.
+
+To run in IntelliJ, set the environment variables listed above and run the MirrorMain class with program arguments ```server mirror.yml```

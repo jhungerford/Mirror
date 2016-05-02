@@ -1,0 +1,5 @@
+weather:
+  # Register an account at https://developer.forecast.io/, and set the MIRROR_FORECASTIO_API_KEY environment variable
+  forecastioApiKey: ${MIRROR_FORECASTIO_API_KEY}
+  latitude: ${MIRROR_LATITUDE}
+  longitude: ${MIRROR_LONGITUDE}

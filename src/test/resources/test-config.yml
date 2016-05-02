@@ -1,3 +1,4 @@
+# Use different ports for the test server so the test server and main server can run at the same time
 server:
   applicationConnectors:
     - type: http
@@ -5,6 +6,12 @@ server:
   adminConnectors:
     - type: http
       port: 8091
+
+weather:
+  # Register an account at https://developer.forecast.io/, and set the MIRROR_FORECASTIO_API_KEY environment variable
+  forecastioApiKey: fake-api-key
+  latitude: 37.8267
+  longitude: -122.423
 
 logging:
   level: INFO
