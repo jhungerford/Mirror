@@ -21,7 +21,6 @@ public class WeatherServiceTest {
     private WeatherService weatherService = new WeatherService(mockFetcher);
 
     @Test
-    @Ignore
     public void parseSampleResponse() throws Exception {
         String json = Files.toString(new File(Resources.getResource("sample-forecastio-response.json").toURI()), Charsets.UTF_8);
         Weather weather = weatherService.parseJson(json);
@@ -37,6 +36,6 @@ public class WeatherServiceTest {
 
         assertThat(weather.getMinutelySummary()).isEqualTo("Clear for the hour.");
         assertThat(weather.getHourlySummary()).isEqualTo("Clear throughout the day.");
-        assertThat(weather.getDailySummary()).isEqualTo("Drizzle on Wednesday, with temperatures falling to 60° on Wednesday.");
+        assertThat(weather.getDailySummary()).isEqualTo("Drizzle on Wednesday, with temperatures falling to 60°F on Wednesday.");
     }
 }
