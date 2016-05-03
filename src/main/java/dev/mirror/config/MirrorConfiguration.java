@@ -1,6 +1,8 @@
 package dev.mirror.config;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.mirror.config.weather.DefaultWeatherFactory;
+import dev.mirror.config.weather.WeatherFactory;
 import io.dropwizard.Configuration;
 
 import javax.validation.Valid;
@@ -9,15 +11,15 @@ import javax.validation.constraints.NotNull;
 public class MirrorConfiguration extends Configuration {
     @Valid
     @NotNull
-    private WeatherConfiguration weather;
+    private WeatherFactory weatherFactory = new DefaultWeatherFactory();
 
-    @JsonProperty
-    public WeatherConfiguration getWeather() {
-        return weather;
+    @JsonProperty("weather")
+    public WeatherFactory getWeatherFactory() {
+        return weatherFactory;
     }
 
-    @JsonProperty
-    public void setWeather(WeatherConfiguration weather) {
-        this.weather = weather;
+    @JsonProperty("weather")
+    public void setWeatherFactory(WeatherFactory weatherFactory) {
+        this.weatherFactory = weatherFactory;
     }
 }

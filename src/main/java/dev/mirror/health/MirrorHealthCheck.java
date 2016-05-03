@@ -2,7 +2,6 @@ package dev.mirror.health;
 
 import com.codahale.metrics.health.HealthCheck;
 import dev.mirror.resources.MirrorResource;
-import dev.mirror.views.MirrorView;
 import org.slf4j.Logger;
 
 import static org.slf4j.LoggerFactory.getLogger;

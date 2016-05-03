@@ -1,14 +1,17 @@
-package dev.mirror.config;
+package dev.mirror.config.weather;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import dev.mirror.services.ForecastioWeatherFetcher;
 import dev.mirror.services.WeatherService;
+import io.dropwizard.setup.Environment;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 
-public class WeatherConfiguration {
+@JsonTypeName("default")
+public class DefaultWeatherFactory implements WeatherFactory {
 
     @NotEmpty
     private String forecastioApiKey;
@@ -51,7 +54,7 @@ public class WeatherConfiguration {
         this.longitude = longitude;
     }
 
-    public WeatherService buildService() {
+    public WeatherService build(Environment environment) throws Exception {
         ForecastioWeatherFetcher weatherFetcher = new ForecastioWeatherFetcher(forecastioApiKey, latitude, longitude);
         return new WeatherService(weatherFetcher);
     }

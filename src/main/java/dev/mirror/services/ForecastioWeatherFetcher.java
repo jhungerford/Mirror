@@ -1,6 +1,6 @@
 package dev.mirror.services;
 
-import dev.mirror.config.WeatherConfiguration;
+import java.io.IOException;
 
 public class ForecastioWeatherFetcher implements WeatherFetcher {
 
@@ -11,7 +11,7 @@ public class ForecastioWeatherFetcher implements WeatherFetcher {
     }
 
     @Override
-    public String fetchWeatherJson() {
+    public String fetchWeatherJson() throws IOException {
         return null;
     }
 
