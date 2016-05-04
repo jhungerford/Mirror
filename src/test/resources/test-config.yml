@@ -8,7 +8,10 @@ server:
       port: 8091
 
 weather:
-  type: test
+  # Register an account at https://developer.forecast.io/, and set the environment variables
+  forecastioApiKey: ${MIRROR_FORECASTIO_API_KEY}
+  latitude: ${MIRROR_LATITUDE}
+  longitude: ${MIRROR_LONGITUDE}
 
 logging:
   level: INFO

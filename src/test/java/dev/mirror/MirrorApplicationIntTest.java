@@ -35,6 +35,13 @@ public class MirrorApplicationIntTest {
     }
 
     @Test
+    public void environmentVariablesSet() {
+        assertThat(System.getenv("MIRROR_FORECASTIO_API_KEY")).isNotNull();
+        assertThat(System.getenv("MIRROR_LATITUDE")).isNotNull();
+        assertThat(System.getenv("MIRROR_LONGITUDE")).isNotNull();
+    }
+
+    @Test
     public void appIsHealthy() {
         Response response = client.target(String.format("http://localhost:%d/healthcheck", rule.getAdminPort()))
                 .request().get();
