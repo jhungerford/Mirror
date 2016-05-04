@@ -1,5 +1,6 @@
 package dev.mirror.resources;
 
+import dev.mirror.services.TestWeatherFetcher;
 import dev.mirror.services.WeatherService;
 import dev.mirror.views.MirrorView;
 import org.joda.time.DateTime;
@@ -8,13 +9,16 @@ import org.junit.After;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class MirrorResourceTest {
 
-    private WeatherService mockWeatherService = Mockito.mock(WeatherService.class);
+    private WeatherService testWeatherService = new WeatherService(new TestWeatherFetcher());
 
-    private MirrorResource mirrorResource = new MirrorResource(mockWeatherService);
+    private MirrorResource mirrorResource = new MirrorResource(testWeatherService);
 
     @After
     public void cleanUp() {
@@ -22,7 +26,7 @@ public class MirrorResourceTest {
     }
 
     @Test
-    public void viewContainsCurrentTime() {
+    public void viewContainsCurrentTime() throws IOException {
         long time = 1462022645319L;
         DateTimeUtils.setCurrentMillisFixed(time);
 
@@ -32,7 +36,7 @@ public class MirrorResourceTest {
     }
 
     @Test
-    public void timeChangesInView() {
+    public void timeChangesInView() throws IOException {
         MirrorView firstView = mirrorResource.buildMirrorView();
         DateTimeUtils.setCurrentMillisOffset(20000);
         MirrorView secondView = mirrorResource.buildMirrorView();

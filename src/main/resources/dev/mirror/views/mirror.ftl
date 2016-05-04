@@ -22,7 +22,9 @@
         </section>
     </div>
     <div class="column">
-        &nbsp;
+        <section class="weather">
+            <h1 class="weather-current">${weather.current.temperature}°</h1>
+        </section>
     </div>
 </div>
 </body>

@@ -6,6 +6,7 @@ import org.joda.time.DateTime;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import java.io.IOException;
 
 @Path("/")
 public class MirrorResource {
@@ -17,19 +18,20 @@ public class MirrorResource {
     }
 
     @GET
-    public MirrorView root() {
+    public MirrorView root() throws IOException {
         return buildMirrorView();
     }
 
     @GET
     @Path("index.html")
-    public MirrorView index() {
+    public MirrorView index() throws IOException {
         return buildMirrorView();
     }
 
-    public MirrorView buildMirrorView() {
+    public MirrorView buildMirrorView() throws IOException {
         return MirrorView.builder()
                 .setTime(DateTime.now())
+                .setWeather(weatherService.getWeather())
                 .build();
     }
 }

@@ -10,14 +10,12 @@ import java.net.URISyntaxException;
 
 public class TestWeatherFetcher implements WeatherFetcher {
 
-    private final String json;
-
-    public TestWeatherFetcher() throws URISyntaxException, IOException {
-        this.json = Files.toString(new File(Resources.getResource("sample-forecastio-response.json").toURI()), Charsets.UTF_8);
-    }
-
     @Override
     public String fetchWeatherJson() throws IOException {
-        return json;
+        try {
+            return Files.toString(new File(Resources.getResource("sample-forecastio-response.json").toURI()), Charsets.UTF_8);
+        } catch (URISyntaxException e) {
+            throw new IOException("Error finding sample json", e);
+        }
     }
 }
