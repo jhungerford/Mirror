@@ -14,13 +14,11 @@ public class WeatherFactory {
     @NotEmpty
     private String forecastioApiKey;
 
-    @DecimalMin("-90.0")
-    @DecimalMax("90.0")
-    private double latitude;
+    @NotEmpty
+    private String latitude;
 
-    @DecimalMin("-180.0")
-    @DecimalMax("180.0")
-    private double longitude;
+    @NotEmpty
+    private String longitude;
 
     @JsonProperty
     public String getForecastioApiKey() {
@@ -33,27 +31,29 @@ public class WeatherFactory {
     }
 
     @JsonProperty
-    public double getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 
     @JsonProperty
-    public void setLatitude(double latitude) {
+    public void setLatitude(String latitude) {
         this.latitude = latitude;
     }
 
     @JsonProperty
-    public double getLongitude() {
+    public String getLongitude() {
         return longitude;
     }
 
     @JsonProperty
-    public void setLongitude(double longitude) {
+    public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
 
     public WeatherService build(Environment environment) throws Exception {
         ForecastioWeatherFetcher weatherFetcher = new ForecastioWeatherFetcher(forecastioApiKey, latitude, longitude);
+        environment.lifecycle().manage(weatherFetcher);
+
         return new WeatherService(weatherFetcher);
     }
 }
