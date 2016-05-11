@@ -23,7 +23,7 @@
     </div>
     <div class="column">
         <section class="weather">
-            <h1 class="weather-current">${weather.current.temperature}°</h1>
+            <h1 class="weather-current"><i class="wi wi-forecast-io-${weather.current.icon}"></i> ${weather.current.temperature}°</h1>
         </section>
     </div>
 </div>
