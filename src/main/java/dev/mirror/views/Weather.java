@@ -1,8 +1,11 @@
 package dev.mirror.views;
 
+import java.util.List;
+
 public class Weather {
 
     private WeatherData current;
+    private List<WeatherData> daily;
 
     private String minutelySummary;
     private String hourlySummary;

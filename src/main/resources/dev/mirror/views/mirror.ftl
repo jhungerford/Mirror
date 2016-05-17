@@ -1,3 +1,5 @@
+<#-- @ftlvariable name="time" type="org.joda.time.DateTime" -->
+<#-- @ftlvariable name="weather" type="dev.mirror.views.Weather" -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +26,10 @@
     <div class="column">
         <section class="weather">
             <h1 class="weather-current"><i class="wi wi-forecast-io-${weather.current.icon}"></i> ${weather.current.temperature}°</h1>
+            <h3>${weather.current.summary} - feels like ${weather.current.apparentTemperature}.</h3>
+            <h3>${weather.hourlySummary}</h3>
+            <!-- Forecast.io style table: TODAY <icon> Partly cloudly throughout the day. 40 ===== 60 -->
+            <!-- low 40 at 5am, high 60 at 5PM, sunrise 5:50 AM, sunset 8:07 PM -->
         </section>
     </div>
 </div>
