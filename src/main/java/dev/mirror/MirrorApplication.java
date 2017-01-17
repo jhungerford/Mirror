@@ -25,7 +25,10 @@ public class MirrorApplication extends Application<MirrorConfiguration> {
     }
 
     public void run(MirrorConfiguration config, Environment env) throws Exception {
-        MirrorResource mirrorResource = new MirrorResource(config.getWeatherFactory().build(env));
+        MirrorResource mirrorResource = new MirrorResource(
+                config.getWeatherFactory().build(env),
+                config.getRadarFactory().build(env)
+        );
 
         env.healthChecks().register("app", new MirrorHealthCheck(mirrorResource));
         env.jersey().register(mirrorResource);

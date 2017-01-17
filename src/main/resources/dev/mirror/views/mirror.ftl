@@ -1,5 +1,4 @@
-<#-- @ftlvariable name="time" type="org.joda.time.DateTime" -->
-<#-- @ftlvariable name="weather" type="dev.mirror.views.Weather" -->
+<#-- @ftlvariable name="" type="dev.mirror.views.MirrorView" -->
 <!DOCTYPE html>
 <html>
 <head>

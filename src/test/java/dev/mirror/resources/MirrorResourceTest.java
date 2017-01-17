@@ -1,5 +1,6 @@
 package dev.mirror.resources;
 
+import dev.mirror.services.RadarService;
 import dev.mirror.services.TestWeatherFetcher;
 import dev.mirror.services.WeatherService;
 import dev.mirror.views.MirrorView;
@@ -17,8 +18,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class MirrorResourceTest {
 
     private WeatherService testWeatherService = new WeatherService(new TestWeatherFetcher());
+    private RadarService testRadarService = new RadarService("FTG");
 
-    private MirrorResource mirrorResource = new MirrorResource(testWeatherService);
+    private MirrorResource mirrorResource = new MirrorResource(testWeatherService, testRadarService);
 
     @After
     public void cleanUp() {

@@ -11,11 +11,13 @@ public class MirrorView extends View {
 
     private final DateTime time;
     private final Weather weather;
+    private final Radar radar;
 
-    private MirrorView(DateTime time, Weather weather) {
+    private MirrorView(DateTime time, Weather weather, Radar radar) {
         super("mirror.ftl", Charsets.UTF_8);
         this.time = time;
         this.weather = weather;
+        this.radar = radar;
     }
 
     public DateTime getTime() {
@@ -24,6 +26,10 @@ public class MirrorView extends View {
 
     public Weather getWeather() {
         return weather;
+    }
+
+    public Radar getRadar() {
+        return radar;
     }
 
     @Override
@@ -37,6 +43,7 @@ public class MirrorView extends View {
         return new EqualsBuilder()
                 .append(time, that.time)
                 .append(weather, that.weather)
+                .append(radar, that.radar)
                 .isEquals();
     }
 
@@ -45,34 +52,42 @@ public class MirrorView extends View {
         return new HashCodeBuilder(17, 37)
                 .append(time)
                 .append(weather)
+                .append(radar)
                 .toHashCode();
     }
 
-    public static MirrorViewBuilder builder() {
-        return new MirrorViewBuilder();
+    public static Builder builder() {
+        return new Builder();
     }
 
-    public static class MirrorViewBuilder {
+    public static class Builder {
         private DateTime time;
         private Weather weather;
+        private Radar radar;
 
-        private MirrorViewBuilder() {}
+        private Builder() {}
 
-        public MirrorViewBuilder setTime(DateTime time) {
+        public Builder withTime(DateTime time) {
             this.time = time;
             return this;
         }
 
-        public MirrorViewBuilder setWeather(Weather weather) {
+        public Builder withWeather(Weather weather) {
             this.weather = weather;
+            return this;
+        }
+
+        public Builder withRadar(Radar radar) {
+            this.radar = radar;
             return this;
         }
 
         public MirrorView build() {
             Preconditions.checkNotNull(time, "Time is missing");
             Preconditions.checkNotNull(weather, "Weather is missing");
+            Preconditions.checkNotNull(radar, "Radar is missing");
 
-            return new MirrorView(time, weather);
+            return new MirrorView(time, weather, radar);
         }
     }
 }

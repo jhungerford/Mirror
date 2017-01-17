@@ -1,4 +1,4 @@
-package dev.mirror.config.weather;
+package dev.mirror.config;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.mirror.services.ForecastioWeatherFetcher;

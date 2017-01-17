@@ -4,6 +4,7 @@ import com.codahale.metrics.MetricRegistry;
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import com.google.common.io.Resources;
+import dev.mirror.services.RadarService;
 import dev.mirror.services.TestWeatherFetcher;
 import dev.mirror.services.WeatherFetcher;
 import dev.mirror.services.WeatherService;
@@ -35,7 +36,7 @@ public class MirrorResourceIntTest {
     @ClassRule
     public static final ResourceTestRule resources = ResourceTestRule.builder()
             .addProvider(new ViewMessageBodyWriter(new MetricRegistry(), Collections.<ViewRenderer>singleton(new FreemarkerViewRenderer())))
-            .addResource(new MirrorResource(new WeatherService(new TestWeatherFetcher())))
+            .addResource(new MirrorResource(new WeatherService(new TestWeatherFetcher()), new RadarService("FTG")))
             .build();
 
     private Response response;

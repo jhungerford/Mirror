@@ -13,8 +13,8 @@ import static org.mockito.Mockito.*;
 public class MirrorHealthCheckTest {
 
     private static final MirrorView EMPTY_MIRROR_VIEW = MirrorView.builder()
-            .setTime(DateTime.now())
-            .setWeather(new Weather())
+            .withTime(DateTime.now())
+            .withWeather(new Weather())
             .build();
 
     private MirrorResource mockMirrorResource = mock(MirrorResource.class);
