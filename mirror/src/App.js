@@ -16,7 +16,12 @@ class App extends Component {
             <Clock />
           </div>
           <div className="column column-4">
-            <Weather />
+            <div className="row">
+              <Weather city="Boulder" days={ 3 } />
+            </div>
+            <div className="row">
+              <Weather city="Vail" days={ 1 } />
+            </div>
           </div>
         </div>
       </div>
