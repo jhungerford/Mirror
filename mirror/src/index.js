@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import {IntlProvider} from 'react-intl';
 import './index.css';
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+    <IntlProvider locale="en">
+      <App />
+    </IntlProvider>,
+    document.getElementById('root')
 );
