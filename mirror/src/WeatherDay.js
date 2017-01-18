@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+import './css/weather-icons.css'
+
 class WeatherDay extends Component {
   static propTypes = {
     day: PropTypes.string.isRequired,
@@ -9,10 +11,12 @@ class WeatherDay extends Component {
   };
 
   render() {
+    const icon = 'wi wi-day-' + this.props.icon;
+
     return (
         <div className="row">
           <div className="column column-3">
-            <i className="wi wi-day-{ icon }"></i>
+            <i className={ icon }></i>
             { this.props.day }
           </div>
           <div className="column column-6">
