@@ -7,6 +7,7 @@ class WeatherDay extends Component {
     day: PropTypes.string.isRequired,
     high: PropTypes.number.isRequired,
     low: PropTypes.number.isRequired,
+    precipitation: PropTypes.number.isRequired,
     icon: PropTypes.string.isRequired
   };
 
@@ -16,14 +17,14 @@ class WeatherDay extends Component {
     return (
         <div className="row">
           <div className="column column-3">
-            <i className={ icon }></i>
+            <i className={ icon } />
             { this.props.day }
           </div>
           <div className="column column-6">
             { this.props.high }˚/{ this.props.low }˚
           </div>
           <div className="column column-3">
-            0 in
+            { this.props.precipitation } in
           </div>
         </div>
     );

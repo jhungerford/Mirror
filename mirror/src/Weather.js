@@ -24,7 +24,8 @@ class Weather extends Component {
         high: 32,
         low: 20,
         day: 'Tue',
-        icon: 'snow'
+        precipitation: 0,
+        icon: 'sunny',
       });
 
 
@@ -45,6 +46,7 @@ class Weather extends Component {
                   day={ info.day }
                   high={ info.high }
                   low={ info.low }
+                  precipitation={ info.precipitation }
                   icon={ info.icon }
               />
             </div>
