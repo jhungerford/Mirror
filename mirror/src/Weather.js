@@ -2,14 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import WeatherDay from './WeatherDay'
 import Loading from './Loading'
 
-function Repeat(props) {
-  let items = [];
-  for (let i = 0; i < props.count; i ++) {
-    items.push(props.children(i));
-  }
-  return <div className="row">{items}</div>;
-}
-
 /**
  * Weather information for a city.  Displays a configurable number of days worth of weather information.
  */
@@ -47,17 +39,16 @@ class Weather extends Component {
     if (this.state.loading) {
       weather = <Loading />;
     } else {
-      weather = <Repeat count={ this.props.days }>
-        { (index) => (
-            <WeatherDay
-                key={ index }
-                day={ this.state.weatherInfo[index].day }
-                high={ this.state.weatherInfo[index].high }
-                low={ this.state.weatherInfo[index].low }
-                icon={ this.state.weatherInfo[index].icon }
-            />
-        )}
-      </Repeat>;
+      weather = this.state.weatherInfo.map( (info, index) => (
+            <div key={index} className="row">
+              <WeatherDay
+                  day={ info.day }
+                  high={ info.high }
+                  low={ info.low }
+                  icon={ info.icon }
+              />
+            </div>
+        ));
     }
 
     return (
