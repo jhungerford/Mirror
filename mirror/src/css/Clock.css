@@ -1,0 +1,12 @@
+.clock {
+    margin: 3rem;
+}
+
+.clock-time {
+    font-size: 7rem;
+    margin: 2rem;
+}
+
+.clock-date {
+    font-size: 2rem;
+}
