@@ -1,6 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react'
 import WeatherDay from './WeatherDay'
 import Loading from './Loading'
+import './css/Weather.css'
 
 /**
  * Weather information for a city.  Displays a configurable number of days worth of weather information.
@@ -41,26 +42,22 @@ class Weather extends Component {
       weather = <Loading />;
     } else {
       weather = this.state.weatherInfo.map( (info, index) => (
-            <div key={index} className="row">
-              <WeatherDay
-                  day={ info.day }
-                  high={ info.high }
-                  low={ info.low }
-                  precipitation={ info.precipitation }
-                  icon={ info.icon }
-              />
-            </div>
+            <WeatherDay key={ index }
+                day={ info.day }
+                high={ info.high }
+                low={ info.low }
+                precipitation={ info.precipitation }
+                icon={ info.icon }
+            />
         ));
     }
 
     return (
         <div className="weather">
-          <div className="row">
-            <p>{ this.props.city }</p>
-          </div>
+          <div className="city">{ this.props.city }</div>
           { weather }
         </div>
-    );
+    )
   }
 }
 

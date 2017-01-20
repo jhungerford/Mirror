@@ -1,6 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react'
 
 import './css/weather-icons.css'
+import './css/WeatherDay.css'
 
 class WeatherDay extends Component {
   static propTypes = {
@@ -12,13 +13,12 @@ class WeatherDay extends Component {
   };
 
   render() {
-    const icon = 'wi wi-day-' + this.props.icon;
+    const icon = 'weather-day-icon wi wi-day-' + this.props.icon;
 
     return (
-        <div className="row">
+        <div className="row weather-day">
           <div className="column column-3">
-            <i className={ icon } />
-            { this.props.day }
+            <i className={ icon } /> { this.props.day }
           </div>
           <div className="column column-6">
             { this.props.high }˚/{ this.props.low }˚
