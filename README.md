@@ -23,8 +23,21 @@ Mirror uses the following environment variables for configuration:
 This project uses the dark sky forecast api for weather.  Go to https://darksky.net/dev, and create an account.
 
 To start the app:
-* Install elixir dependencies with `mix deps.get`
-* Install js dependencies with `npm install`
-* Start the Phoenix endpoint with `mix phoenix.server`
+ * Install elixir dependencies with `mix deps.get`
+ * Install js dependencies with `npm install`
+ * Create/configure your development db in `config/dev.secret.exs`
+ * Create and migrate the database with `mix ecto.create && mix ecto.migrate`
+ * Start the Phoenix endpoint with `mix phoenix.server`
 
 Visit http://localhost:4000 in your browser.
+
+## Raspberry Pi
+ * Elixir: http://elixir-lang.org/install.html#raspberry-pi
+ * Phoenix deployment guide: http://www.phoenixframework.org/docs/deployment
+
+### Phoenix links
+ * Official website: http://www.phoenixframework.org/
+ * Guides: http://phoenixframework.org/docs/overview
+ * Docs: http://hexdocs.pm/phoenix
+ * Mailing list: http://groups.google.com/group/phoenix-talk
+ * Source: https://github.com/phoenixframework/phoenix
