@@ -5,6 +5,8 @@ Webpage for an old monitor behind a mirror I connected to a Raspberry Pi.  Displ
 
 React + Phoenix stack inspired by this series of blog posts: http://codeloveandboards.com/blog/2016/01/04/trello-tribute-with-phoenix-and-react-pt-1/.
 
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+
 ## Similar Projects
 A couple other people have put together 'magic mirrors'.  Examples:
 * https://www.raspberrypi.org/blog/magic-mirror/

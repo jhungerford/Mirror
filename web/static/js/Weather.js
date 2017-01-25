@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import WeatherDay from './WeatherDay'
 import Loading from './Loading'
-import './css/Weather.css'
+import '../css/Weather.css'
 
 /**
  * Weather information for a city.  Displays a configurable number of days worth of weather information.

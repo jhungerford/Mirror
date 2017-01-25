@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 
-import './css/weather-icons.css'
-import './css/WeatherDay.css'
+import '../css/weather-icons.css'
+import '../css/WeatherDay.css'
 
 class WeatherDay extends Component {
   static propTypes = {

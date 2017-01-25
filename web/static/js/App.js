@@ -4,7 +4,7 @@ import Calendar from './Calendar';
 import Clock from './Clock';
 import Weather from './Weather';
 
-import './css/App.css';
+import '../css/App.css';
 
 class App extends Component {
   render() {

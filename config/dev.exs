@@ -10,8 +10,11 @@ config :phoenix_mirror, PhoenixMirror.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
+  cache_static_lookup: false,
   check_origin: false,
-  watchers: []
+  watchers: [
+    node: ["node_modules/webpack/bin/webpack.js", "--watch", cd: Path.expand("../", __DIR__)]
+  ]
 
 
 # Watch static and templates for browser reloading.
