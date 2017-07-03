@@ -1,0 +1,38 @@
+.row-weather {
+    line-height: 2rem;
+}
+
+.column-weather-icon {
+    width: 10%;
+}
+
+.column-weather-day {
+    width: 15%;
+    text-align: left;
+}
+
+.column-weather-range-min {
+    text-align: right;
+    padding-right: 1rem;
+}
+
+.column-weather-range-bar {
+    height: 1rem;
+    margin: 0.5rem 0;
+    background-color: #FAFAFA;
+    border-radius: 1rem;
+}
+
+.column-weather-range-max {
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.weather-link {
+    margin: 1.5rem 0;
+}
+
+.weather-link a {
+    color:#616161;
+    text-decoration: none;
+}

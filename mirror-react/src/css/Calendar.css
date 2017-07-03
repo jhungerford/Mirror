@@ -1,0 +1,24 @@
+.calendar-month {
+    font-size: 3rem;
+    margin: 1rem 0;
+}
+
+.column-calendar {
+    float: left;
+    width: 14.28%;
+    padding: 0.5rem 0
+}
+
+.column-calendar:last-of-type {
+    width: 14.32%;
+}
+
+.calendar .inactive {
+    color:#616161;
+}
+
+.calendar .today {
+    outline: 1px solid #FAFAFA;
+    outline-offset: -1px;
+    font-weight: bold;
+}

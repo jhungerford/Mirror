@@ -1,0 +1,23 @@
+.row {
+    margin: 0.5rem 0;
+}
+
+.row,
+.column {
+    box-sizing: border-box;
+}
+
+.row:before,
+.row:after {
+    content: " ";
+    display: table;
+}
+
+.row:after {
+    clear: both;
+}
+
+.column {
+    position: relative;
+    float: left;
+}
