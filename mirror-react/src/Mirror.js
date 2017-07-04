@@ -6,7 +6,7 @@ import Time from './Time';
 import Weather from './Weather';
 
 import './css/grid.css';
-import './css/App.css';
+import './css/Mirror.css';
 
 class App extends Component {
   render() {
