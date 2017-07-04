@@ -8,17 +8,39 @@ import Weather from './Weather';
 import './css/grid.css';
 import './css/Mirror.css';
 
-class App extends Component {
+class Mirror extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      date: new Date()
+    };
+  }
+
+  componentDidMount() {
+    this.intervalId = setInterval(() => this.tick(), 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
+  }
+
+  tick() {
+    this.setState({
+      date: new Date()
+    });
+  }
+
   render() {
     return (
-      <div className="App row">
+      <div className="Mirror row">
         <div className="column column-main">
           <Calendar />
           <Schedule />
           &nbsp;
         </div>
         <div className="column column-main">
-          <Time />
+          <Time date={ this.state.date }/>
         </div>
         <div className="column column-main">
           <Weather />
@@ -29,4 +51,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Mirror;

@@ -7,30 +7,9 @@ class Time extends Component {
     return num < 10 ? '0' + num : num.toString()
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      date: new Date()
-    };
-  }
-
-  componentDidMount() {
-    this.intervalId = setInterval(() => this.tick, 1000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.intervalId);
-  }
-
-  tick() {
-    this.setState({
-      date: new Date()
-    });
-  }
-
   render() {
     return (
-      <div className="time">{ this.state.date.getHours() }:{ Time.padNumber(this.state.date.getMinutes()) }</div>
+      <div className="time">{ this.props.date.getHours() }:{ Time.padNumber(this.props.date.getMinutes()) }</div>
     );
   }
 }
