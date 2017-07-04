@@ -1,75 +1,88 @@
 import React, { Component } from 'react';
 import './css/Calendar.css';
 
-class Calendar extends Component {
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(day => ({
+  value: day,
+  inactive: false,
+  today: false
+}));
 
+function Month(props) {
+  return <div className="title">{ months[props.date.getMonth()] }</div>
+}
+
+function Week(props) {
+  return <div className="row">
+    { props.days.map(day =>
+      <Day key={ day.value + (day.inactive ? '-inactive' : '' )}
+           value={ day.value }
+           inactive={ day.inactive }
+           today={ day.today } />
+    )}
+  </div>;
+}
+
+function Day(props) {
+  const className = "column column-calendar" +
+    (props.inactive ? ' inactive' : '') +
+    (props.today ? ' today' : '');
+
+  return <div className={ className }>{ props.value }</div>
+}
+
+class Calendar extends Component {
   render() {
+    const now = this.props.date;
+    const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+    const monthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+
+    const startDay = monthStart.getDay();
+    const daysInMonth = (monthEnd - monthStart) / (24 * 60 * 60 * 1000) + 1;
+    const daysInLastMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+
+    const numWeeks = Math.ceil((startDay + daysInMonth) / 7);
+
+    const range = (start, end) => Array.from({length: (end - start)}, (value, key) => key);
+
+    // Flat array of days that the calendar will display.
+    let calendarDays = [];
+
+    for (let prevMonthDay = daysInLastMonth - startDay + 1; prevMonthDay <= daysInLastMonth; prevMonthDay ++) {
+      calendarDays[calendarDays.length] = {
+        value: prevMonthDay,
+        inactive: true,
+        today: false
+      };
+    }
+
+    for (let monthIndex = 1; monthIndex <= daysInMonth; monthIndex ++) {
+      calendarDays[calendarDays.length] = {
+        value: monthIndex,
+        inactive: false,
+        today: (monthIndex === now.getDate())
+      }
+    }
+
+    const remainingDays = 7 - (startDay + daysInMonth) % 7;
+    if (remainingDays < 7) {
+      for (let nextMonthDay = 1; nextMonthDay <= remainingDays; nextMonthDay ++) {
+        calendarDays[calendarDays.length] = {
+          value: nextMonthDay,
+          inactive: true,
+          today: false
+        };
+      }
+    }
+
     return (
       <section className="calendar">
-        <div className="title">July</div>
-        <div className="row">
-          <div className="column-calendar">Sun</div>
-          <div className="column-calendar">Mon</div>
-          <div className="column-calendar">Tue</div>
-          <div className="column-calendar">Wed</div>
-          <div className="column-calendar">Thu</div>
-          <div className="column-calendar">Fri</div>
-          <div className="column-calendar">Sat</div>
-        </div>
-        <div className="row">
-          <div className="column-calendar inactive">25</div>
-          <div className="column-calendar inactive">26</div>
-          <div className="column-calendar inactive">27</div>
-          <div className="column-calendar inactive">28</div>
-          <div className="column-calendar inactive">29</div>
-          <div className="column-calendar inactive">30</div>
-          <div className="column-calendar">1</div>
-        </div>
-        <div className="row">
-          <div className="column-calendar">2</div>
-          <div className="column-calendar today">3</div>
-          <div className="column-calendar">4</div>
-          <div className="column-calendar">5</div>
-          <div className="column-calendar">6</div>
-          <div className="column-calendar">7</div>
-          <div className="column-calendar">8</div>
-        </div>
-        <div className="row">
-          <div className="column-calendar">9</div>
-          <div className="column-calendar">10</div>
-          <div className="column-calendar">11</div>
-          <div className="column-calendar">12</div>
-          <div className="column-calendar">13</div>
-          <div className="column-calendar">14</div>
-          <div className="column-calendar">15</div>
-        </div>
-        <div className="row">
-          <div className="column-calendar">16</div>
-          <div className="column-calendar">17</div>
-          <div className="column-calendar">18</div>
-          <div className="column-calendar">19</div>
-          <div className="column-calendar">20</div>
-          <div className="column-calendar">21</div>
-          <div className="column-calendar">22</div>
-        </div>
-        <div className="row">
-          <div className="column-calendar">23</div>
-          <div className="column-calendar">24</div>
-          <div className="column-calendar">25</div>
-          <div className="column-calendar">26</div>
-          <div className="column-calendar">27</div>
-          <div className="column-calendar">28</div>
-          <div className="column-calendar">29</div>
-        </div>
-        <div className="row">
-          <div className="column-calendar">30</div>
-          <div className="column-calendar">31</div>
-          <div className="column-calendar inactive">1</div>
-          <div className="column-calendar inactive">2</div>
-          <div className="column-calendar inactive">3</div>
-          <div className="column-calendar inactive">4</div>
-          <div className="column-calendar inactive">5</div>
-        </div>
+        <Month date={ this.props.date } />
+        <Week days={ dayNames } />
+
+        { range(0, numWeeks).map(weekNum =>
+          <Week key={now.getMonth() + '-' + weekNum} days={ calendarDays.slice(weekNum * 7, weekNum * 7 + 7) } />
+        )}
       </section>
     );
   }

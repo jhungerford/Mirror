@@ -35,7 +35,7 @@ class Mirror extends Component {
     return (
       <div className="Mirror row">
         <div className="column column-main">
-          <Calendar />
+          <Calendar date={ this.state.date } />
           <Schedule />
           &nbsp;
         </div>
