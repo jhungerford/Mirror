@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './css/Weather.css';
 
 class Weather extends Component {
@@ -15,14 +15,16 @@ class Weather extends Component {
           <div className="column column-weather-range-max" style={{width: '24%'}}>90°</div>
         </div>
         <div className="row row-weather">
-          <div className="column column-weather-icon"><i className="wi wi-forecast-io-partly-cloudy-day">&nbsp;</i></div>
+          <div className="column column-weather-icon"><i className="wi wi-forecast-io-partly-cloudy-day">&nbsp;</i>
+          </div>
           <div className="column column-weather-day">Tue</div>
-          <div className="column column-weather-range-min" style={{'margin-left': '5%', width:'14%'}}>66°</div>
+          <div className="column column-weather-range-min" style={{'margin-left': '5%', width: '14%'}}>66°</div>
           <div className="column column-weather-range-bar" style={{width: '32%'}}>&nbsp;</div>
           <div className="column column-weather-range-max" style={{width: '24%'}}>89°</div>
         </div>
         <div className="row row-weather">
-          <div className="column column-weather-icon"><i className="wi wi-forecast-io-partly-cloudy-day">&nbsp;</i></div>
+          <div className="column column-weather-icon"><i className="wi wi-forecast-io-partly-cloudy-day">&nbsp;</i>
+          </div>
           <div className="column column-weather-day">Wed</div>
           <div className="column column-weather-range-min" style={{'margin-left': '5%', width: '14%'}}>65°</div>
           <div className="column column-weather-range-bar" style={{width: '42%'}}>&nbsp;</div>

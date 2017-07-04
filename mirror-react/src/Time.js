@@ -12,6 +12,10 @@ class Time extends Component {
     };
   }
 
+  static padNumber(num) {
+    return num < 10 ? '0' + num : num.toString()
+  };
+
   constructor(props) {
     super(props);
 
@@ -31,7 +35,7 @@ class Time extends Component {
 
   render() {
     return (
-      <div className="time">{ this.state.hour }: { this.state.minute }</div>
+      <div className="time">{ this.state.hour }:{ Time.padNumber(this.state.minute) }</div>
     );
   }
 }
