@@ -3,10 +3,10 @@ import { mount } from 'enzyme';
 import Calendar from '../Calendar';
 
 // Enable for jest debugging from IntelliJ
-import jsdom from 'jsdom';
-const doc = jsdom.jsdom('<!doctype html><html><body></body></html>');
-global.document = doc;
-global.window = doc.defaultView
+// import jsdom from 'jsdom';
+// const doc = jsdom.jsdom('<!doctype html><html><body></body></html>');
+// global.document = doc;
+// global.window = doc.defaultView
 
 const feb28_2016 = new Date(1456700203000); // leap year
 
