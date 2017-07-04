@@ -4,6 +4,7 @@ import Calendar from './Calendar';
 import Schedule from './Schedule';
 import Time from './Time';
 import Weather from './Weather';
+import Loader from './Loader';
 
 import './css/grid.css';
 import './css/Mirror.css';
@@ -37,7 +38,7 @@ class Mirror extends Component {
         <div className="column column-main">
           <Calendar date={ this.state.date } />
           <Schedule />
-          &nbsp;
+          <Loader />
         </div>
         <div className="column column-main">
           <Time date={ this.state.date }/>
