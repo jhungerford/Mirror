@@ -5,6 +5,10 @@ Webpage for an old monitor behind a mirror I connected to a Raspberry Pi.  Displ
 
 I ride my bike to work most days, so 'useful' stuff helps me decide whether to take the bus.
 
+## Screenshot
+
+![Screenshot](mirror.png)
+
 ## Similar Projects
 A couple other people have put together 'magic mirrors'.  Examples:
 * https://www.raspberrypi.org/blog/magic-mirror/
