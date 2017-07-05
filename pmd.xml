@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<ruleset name="Custom ruleset"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <description>Mirror PMD rules</description>
+
+    <rule ref="rulesets/java/braces.xml"/>
+
+    <rule ref="rulesets/java/naming.xml">
+        <exclude name="ShortVariable"/>
+        <exclude name="ShortClassName"/>
+        <exclude name="AbstractNaming"/>
+    </rule>
+
+    <rule ref="rulesets/java/naming.xml/VariableNamingConventions">
+        <properties>
+            <property name="violationSuppressRegex" value=".*'log'.*"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/java/naming.xml/LongVariable">
+        <properties>
+            <property name="minimum" value="35"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/java/codesize.xml">
+        <exclude name="ExcessiveParameterList"/>
+        <exclude name="TooManyMethods"/>
+        <exclude name="TooManyFields"/>
+        <exclude name="ExcessivePublicCount"/>
+    </rule>
+
+    <rule ref="rulesets/java/design.xml">
+        <exclude name="AccessorClassGeneration"/>
+        <exclude name="FieldDeclarationsShouldBeAtStartOfClass"/>
+        <exclude name="AvoidSynchronizedAtMethodLevel"/>
+        <exclude name="UseVarargs"/>
+        <exclude name="UseLocaleWithCaseConversions"/>
+    </rule>
+
+    <rule ref="rulesets/java/logging-java.xml"/>
+
+    <rule ref="rulesets/java/optimizations.xml">
+        <exclude name="MethodArgumentCouldBeFinal"/>
+        <exclude name="LocalVariableCouldBeFinal"/>
+        <exclude name="AvoidInstantiatingObjectsInLoops"/>
+        <exclude name="PrematureDeclaration"/>
+    </rule>
+
+    <rule ref="rulesets/java/strings.xml">
+        <exclude name="AvoidStringBufferField"/>
+        <exclude name="AvoidDuplicateLiterals"/>
+    </rule>
+
+    <rule ref="rulesets/java/imports.xml">
+        <exclude name="TooManyStaticImports"/>
+    </rule>
+
+    <rule ref="rulesets/java/unusedcode.xml" />
+</ruleset>
