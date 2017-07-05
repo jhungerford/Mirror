@@ -1,42 +1,58 @@
 import React, { Component } from 'react';
 import './css/Schedule.css';
 
-class Schedule extends Component {
+const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-  render() {
-    return (
-      <section className="schedule">
-        <div className="schedule-day">
-          <div className="title">Monday, July 3</div>
-          <div className="row">
-            <div className="column column-schedule-all">No More Events</div>
-          </div>
-        </div>
-        <div className="schedule-day">
-          <div className="title">Tues, July 4</div>
-          <div className="row">
-            <div className="column column-schedule-all">Independence Day</div>
-          </div>
-          <div className="row">
-            <div className="column column-schedule-time">8:30</div>
-            <div className="column column-schedule-event">Coffee</div>
-          </div>
-          <div className="row">
-            <div className="column column-schedule-time">10:30</div>
-            <div className="column column-schedule-event">Engineering Leads Daily</div>
-          </div>
-          <div className="row">
-            <div className="column column-schedule-time">11:00</div>
-            <div className="column column-schedule-event">Standup</div>
-          </div>
-          <div className="row">
-            <div className="column column-schedule-time">13:00</div>
-            <div className="column column-schedule-event">Event with a name that's too long to fit in a row comfortably.</div>
-          </div>
-        </div>
-      </section>
+function zeroPad(num) {
+  return num < 10 ? '0' + num : num.toString()
+};
+
+function ScheduleDate(props) {
+  const date = new Date(props.date);
+
+  return <div className="title">{ days[date.getUTCDay()] }, { months[date.getUTCMonth()] } { date.getUTCDate() }</div>
+}
+
+function ScheduleTimeEvent(props) {
+  const date = new Date(props.time);
+
+  return (
+    <div className="row">
+      <div className="column column-schedule-time">{ date.getHours() }:{ zeroPad(date.getMinutes()) }</div>
+      <div className="column column-schedule-event">{ props.description }</div>
+    </div>
+  );
+}
+
+function ScheduleAllDayEvent(props) {
+  return (
+    <div className="row">
+      <div className="column column-schedule-all">{ props.description }</div>
+    </div>
+  );
+}
+
+function scheduleEvents(events) {
+  if (events && events.length) {
+    return events.map(event => event.time
+      ? <ScheduleTimeEvent key={ event.id } time={ event.time } description={ event.description }/>
+      : <ScheduleAllDayEvent key={ event.id } description={ event.description }/>
     );
+  } else {
+    return <ScheduleAllDayEvent description="No More Events" />
   }
+}
+
+function Schedule(props) {
+  return <section className="schedule">
+    { props.schedule.map(day =>
+      <div key={ day.date } className="schedule-day">
+        <ScheduleDate date={ day.date }/>
+        { scheduleEvents(day.events) }
+      </div>
+    )}
+  </section>
 }
 
 export default Schedule;

@@ -45,14 +45,45 @@ class Mirror extends Component {
       ]
     };
 
+    const mockupSchedule = [
+      {
+        date: '2017-07-03',
+        events: []
+      }, {
+        date: '2017-07-04',
+        events: [
+          {
+            id: '1',
+            description: 'Independence Day'
+          },{
+            id: '2',
+            time: '2017-07-04T14:30:00.000Z',
+            description: 'Coffee'
+          },{
+            id: '3',
+            time: '2017-07-04T16:30:00.000Z',
+            description: 'Engineering Leads Daily'
+          },{
+            id: '4',
+            time: '2017-07-04T17:00:00.000Z',
+            description: 'Standup'
+          },{
+            id: '5',
+            time: '2017-07-04T19:00:00.000Z',
+            description: 'Event with a name that\'s too long to fit in a row comfortably.'
+          }
+        ]
+      }
+    ];
+
     return (
       <div className="Mirror row">
         <div className="column column-main">
           <Calendar date={ this.state.date } />
-          <Schedule />
+          <Schedule schedule={ mockupSchedule } />
         </div>
         <div className="column column-main">
-          <Time date={ this.state.date }/>
+          <Time date={ this.state.date } />
         </div>
         <div className="column column-main">
           <Weather data={ mockupWeather } />
