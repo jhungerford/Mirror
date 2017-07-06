@@ -1,1 +1,3 @@
-# Nothing to configure.
+# MirrorApplication registers the web assets on / - serve the API from /api
+server:
+  rootPath: '/api/*'
