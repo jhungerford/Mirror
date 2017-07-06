@@ -4,3 +4,6 @@ build/
 target/
 
 *.log
+
+# React sources are built with make build-react, and copied to the web folder.
+src/main/resources/web/
