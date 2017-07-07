@@ -1,6 +1,7 @@
 package dev.mirror.api;
 
 import com.google.common.collect.ImmutableList;
+import dev.mirror.MockupWeatherFetcher;
 import dev.mirror.model.ScheduleDay;
 import dev.mirror.model.Weather;
 import io.dropwizard.testing.junit.ResourceTestRule;
@@ -23,7 +24,7 @@ public class MirrorResourceTest {
 
     @ClassRule
     public static final ResourceTestRule server = ResourceTestRule.builder()
-            .addResource(new MirrorResource())
+            .addResource(new MirrorResource(new MockupWeatherFetcher()))
             .build();
 
     @Test

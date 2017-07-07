@@ -1,3 +1,12 @@
 # MirrorApplication registers the web assets on / - serve the API from /api
 server:
   rootPath: '/api/*'
+
+weather:
+  # Register an account at https://developer.darksky.net/
+  apiKey: ${MIRROR_DARKSKY_API_KEY}
+  # Location to fetch weather for - Google Maps is useful for finding your current position
+  latitude: ${MIRROR_LATITUDE}
+  longitude: ${MIRROR_LONGITUDE}
+  # Number of days in the forecast, between 1 and 8
+  days: 5
