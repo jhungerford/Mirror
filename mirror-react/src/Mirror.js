@@ -4,6 +4,7 @@ import Calendar from './Calendar';
 import Schedule from './Schedule';
 import Time from './Time';
 import Weather from './Weather';
+import Loader from './Loader'
 
 import './css/grid.css';
 import './css/Mirror.css';
@@ -13,12 +14,19 @@ class Mirror extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      weather: this.props.weather,
       date: new Date()
     };
   }
 
   componentDidMount() {
     this.intervalId = setInterval(() => this.tick(), 1000);
+
+    if (! this.state.weather) {
+      fetch('/api/v1/mirror/weather')
+        .then(response => response.json())
+        .then(weather => this.setState({weather: weather}))
+    }
   }
 
   componentWillUnmount() {
@@ -32,19 +40,6 @@ class Mirror extends Component {
   }
 
   render() {
-    const mockupWeather = {
-      current: {
-        icon: 'clear-day',
-        temperature: 80,
-        summary: 'Clear'
-      },
-      forecast: [
-        {time: 1499151600, day: 'Today', icon: 'rain', high: 90, low: 61},
-        {time: 1499238000, day: 'Tue', icon: 'partly-cloudy-day', high: 89, low: 66},
-        {time: 1499324400, day: 'Wed', icon: 'partly-cloudy-day', high: 96, low: 65}
-      ]
-    };
-
     const mockupSchedule = [
       {
         date: '2017-07-03',
@@ -86,7 +81,10 @@ class Mirror extends Component {
           <Time date={ this.state.date } />
         </div>
         <div className="column column-main">
-          <Weather data={ mockupWeather } />
+          { this.state.weather
+            ? <Weather data={ this.state.weather } />
+            : <Loader />
+          }
         </div>
       </div>
     );

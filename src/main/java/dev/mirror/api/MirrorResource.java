@@ -28,7 +28,7 @@ public class MirrorResource {
         return Weather.newBuilder()
                 .withCurrent(CurrentWeather.newBuilder()
                         .withIcon("clear-day")
-                        .withTemperature(new BigDecimal(80))
+                        .withTemperature(new BigDecimal(81))
                         .withSummary("Clear")
                         .build())
                 .addForecastDay(ForecastDay.newBuilder()
