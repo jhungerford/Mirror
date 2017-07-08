@@ -15,28 +15,33 @@ class Mirror extends Component {
     super(props);
     this.state = {
       weather: this.props.weather,
+      mockupWeather: this.props.weather !== undefined,
       date: new Date()
     };
   }
 
   componentDidMount() {
-    this.intervalId = setInterval(() => this.tick(), 1000);
+    this.clockIntervalId = setInterval(() => this.clockTick(), 1000); // 1 second
+    this.weatherIntervalId = setInterval(() => this.fetchWeather(), 300000); // 5 minutes
 
-    if (! this.state.weather) {
+    this.fetchWeather();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.clockIntervalId);
+    clearInterval(this.weatherIntervalId);
+  }
+
+  clockTick() {
+    this.setState({ date: new Date() });
+  }
+
+  fetchWeather() {
+    if (! this.state.mockupWeather) {
       fetch('/api/v1/mirror/weather')
         .then(response => response.json())
         .then(weather => this.setState({weather: weather}))
     }
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.intervalId);
-  }
-
-  tick() {
-    this.setState({
-      date: new Date()
-    });
   }
 
   render() {
