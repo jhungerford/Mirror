@@ -10,3 +10,8 @@ weather:
   longitude: ${MIRROR_LONGITUDE}
   # Number of days in the forecast, between 1 and 8
   days: 5
+
+calendar:
+  # Follow step 1 at https://developers.google.com/google-apps/calendar/quickstart/java to create an API key.
+  # Generate credentials, and place them in src/main/resources/client_secret.json
+  apiKey: ${MIRROR_GOOGLE_API_KEY}

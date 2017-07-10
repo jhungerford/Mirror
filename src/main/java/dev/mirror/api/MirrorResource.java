@@ -2,18 +2,18 @@ package dev.mirror.api;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.CacheLoader;
-import com.google.common.cache.LoadingCache;
 import com.google.common.collect.ImmutableList;
-import dev.mirror.model.ScheduleDay;
-import dev.mirror.model.Weather;
 import dev.mirror.fetcher.WeatherFetcher;
+import dev.mirror.model.ScheduleDay;
+import dev.mirror.model.ScheduleEvent;
+import dev.mirror.model.Weather;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.concurrent.ExecutionException;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.concurrent.TimeUnit;
 
 @Path("/v1/mirror")
@@ -39,7 +39,37 @@ public class MirrorResource {
     @GET
     @Path("/schedule")
     public ImmutableList<ScheduleDay> getSchedule() {
-        throw new IllegalStateException("Not Implemented"); // TODO: implement
+        return ImmutableList.of(
+                ScheduleDay.newBuilder()
+                        .withDate(LocalDate.of(2017, 7, 3))
+                        .build(),
+                ScheduleDay.newBuilder()
+                        .withDate(LocalDate.of(2017, 7, 4))
+                        .addEvent(ScheduleEvent.newBuilder()
+                                .withId("1")
+                                .withDescription("Independence Day")
+                                .build())
+                        .addEvent(ScheduleEvent.newBuilder()
+                                .withId("2")
+                                .withStart(Instant.parse("2017-07-04T14:30:00.000Z"))
+                                .withDescription("Coffee")
+                                .build())
+                        .addEvent(ScheduleEvent.newBuilder()
+                                .withId("3")
+                                .withStart(Instant.parse("2017-07-04T16:30:00.000Z"))
+                                .withDescription("Engineering Leads Daily")
+                                .build())
+                        .addEvent(ScheduleEvent.newBuilder()
+                                .withId("4")
+                                .withStart(Instant.parse("2017-07-04T17:00:00.000Z"))
+                                .withDescription("Standup")
+                                .build())
+                        .addEvent(ScheduleEvent.newBuilder()
+                                .withId("5")
+                                .withStart(Instant.parse("2017-07-04T19:00:00.000Z"))
+                                .withDescription("Event with a name that\'s too long to fit in a row comfortably.")
+                                .build())
+                        .build());
     }
 
     @GET
